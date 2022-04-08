@@ -111,7 +111,7 @@ def main(low_res_pkl: Path, # Pickle file from which to take low res layers
             high_res_G, high_res_D, high_res_Gs = misc.load_pkl(high_res_pkl)
 
             out = blend_models(low_res_Gs, high_res_Gs, resolution, level, blend_width=blend_width, verbose=verbose)
-            out_A = blend_models(low_res_Gs, high_res_Gs, 8, level, blend_width=blend_width, verbose=verbose)
+            out_A = blend_models(low_res_Gs, high_res_Gs, 512, level, blend_width=blend_width, verbose=verbose)
 
             rnd = np.random.RandomState(seed)
             for i in range(generate_num): 
@@ -121,9 +121,9 @@ def main(low_res_pkl: Path, # Pickle file from which to take low res layers
                 images_A = out_A.run(latents, None, is_validation=True, minibatch_size=1,output_transform=fmt)
                 # Save image.
                 png_filename = os.path.join(result_dir + '/train_B', str(i).zfill(4)+'.png')
-                PIL.Image.fromarray(images[0], 'RGB').save(png_filename)
+                PIL.Image.fromarray(images[0], 'RGB').resize((512,512),PIL.Image.ANTIALIAS).save(png_filename)
                 png_filename_A = os.path.join(result_dir + '/train_A', str(i).zfill(4)+'.png')
-                PIL.Image.fromarray(images_A[0], 'RGB').save(png_filename_A)
+                PIL.Image.fromarray(images_A[0], 'RGB').resize((512,512),PIL.Image.ANTIALIAS).save(png_filename_A)
 
             # TODO modify all the networks
             if output_pkl:
