@@ -13,7 +13,7 @@ import dnnlib
 from dnnlib import EasyDict
 
 from metrics.metric_defaults import metric_defaults
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
+#os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
 #----------------------------------------------------------------------------
 
 _valid_configs = [
