@@ -1,0 +1,1 @@
+python dataset_tool.py create_from_images /home/jiaqing/DataSets/stylegan2/watercolour/watercolour /home/jiaqing/DataSets/stylegan2/watercolour/raw
